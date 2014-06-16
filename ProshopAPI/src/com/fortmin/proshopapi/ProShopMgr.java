@@ -1,9 +1,17 @@
 package com.fortmin.proshopapi;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import com.fortmin.proshopapi.ble.ProShopBleMgr;
 import com.fortmin.proshopapi.nfc.ProShopNFCMgr;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.nfc.NdefMessage;
+import android.nfc.Tag;
+import android.widget.Toast;
 
 /*
  * Clase principal a la cual se invoca para solicitar el Manager de la Tecnologia
@@ -17,6 +25,11 @@ public class ProShopMgr {
 		this.context = context;
 	}
 	
+	/* --------------------------------------------------------------------------------------------
+	 * ***************** FUNCIONES NEAR FIELD COMMUNICATIONS **************************************
+	 * -------------------------------------------------------------------------------------------- 
+	 */
+
 	/*
 	 * Averiguo si el celular tiene soporte NFC
 	 */
@@ -40,6 +53,67 @@ public class ProShopMgr {
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.nfcHabilitado(context);
 	}
+
+	/*
+	 * Habilita la escucha del Tag para escritura o grabacion del mismo
+	 */
+	public boolean escucharTagNdefGrabar(Activity activity, Context context) {
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.escucharTagNdefEscribir(activity, context);
+	}
+	
+	/*
+	 * Deshabilita la escucha del Tag para escritura o grabacion del mismo
+	 */
+	public void noEscucharTagNdefGrabar(Activity activity, Context context) {
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		nfcMgr.noEscucharTagNdefGrabar(activity, context);
+	}
+	
+	/*
+	 * Escribe el mensaje NDEF en el Tag detectado
+	 */
+	public String escribirNdefMessageToTag(NdefMessage message, Tag detectedTag) {
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.escribirNdefMessageToTag(message, detectedTag);
+	}
+	
+	/*
+	 * Obtiene el Tag descubierto a partir del Intent
+	 */
+	public Tag obtenerTagDescubierto(Intent intent) {
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.obtenerTagDescubierto(intent);
+	}
+	
+	/*
+	 * Preparar mensaje NDEF para URL
+	 * Devuelve la excepcion URISyntaxException si la url no esta bien formada
+	 */
+	public NdefMessage prepararMensNdefUrl(String url) throws URISyntaxException {
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.prepararMensNdefUrl(url);
+	}
+	
+	/*
+	 * Escribir un Tag NFC
+	 */
+	public String escribirUrlTagNfc(String url) {
+		String result = "OK";
+		try {
+			String urlNorm = (new URI(url)).normalize().toString();
+			ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+			result = nfcMgr.escribirUrlTagNfc(context, urlNorm);
+		} catch (URISyntaxException e) {
+			result = "URL_INVALIDA";
+		}
+		return result;
+	}
+	
+	/* --------------------------------------------------------------------------------------------
+	 * ***************** FUNCIONES BLUETOOTH Y BLUETOOTH LOW ENERGY *******************************
+	 * -------------------------------------------------------------------------------------------- 
+	 */
 	
 	/*
 	 * Averiguo si el celular es capaz de comunicarse con dispositivos Bluetooth Low Energy
