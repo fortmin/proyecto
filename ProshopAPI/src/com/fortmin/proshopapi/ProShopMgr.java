@@ -95,21 +95,6 @@ public class ProShopMgr {
 		return nfcMgr.prepararMensNdefUrl(url);
 	}
 	
-	/*
-	 * Escribir un Tag NFC
-	 */
-	public String escribirUrlTagNfc(String url) {
-		String result = "OK";
-		try {
-			String urlNorm = (new URI(url)).normalize().toString();
-			ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
-			result = nfcMgr.escribirUrlTagNfc(context, urlNorm);
-		} catch (URISyntaxException e) {
-			result = "URL_INVALIDA";
-		}
-		return result;
-	}
-	
 	/* --------------------------------------------------------------------------------------------
 	 * ***************** FUNCIONES BLUETOOTH Y BLUETOOTH LOW ENERGY *******************************
 	 * -------------------------------------------------------------------------------------------- 

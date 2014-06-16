@@ -149,17 +149,4 @@ public class ProShopNFCMgr {
 		return nMessage;
 	}
 
-	/*
-	 * Escribir un Tag NFC
-	 */
-	public String escribirUrlTagNfc(Context context, String url) {
-		String result = "TAG_NO_GRABADO";
-		if (nfcHabilitado(context)) {
-			Intent intent = new Intent(context, WriteTag.class);
-			intent.putExtra("URL", url);
-			context.startActivity(intent);
-		}
-		return result;
-	}
-
 }
