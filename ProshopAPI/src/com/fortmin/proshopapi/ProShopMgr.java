@@ -1,17 +1,16 @@
 package com.fortmin.proshopapi;
 
-import java.net.URI;
 import java.net.URISyntaxException;
-
-import com.fortmin.proshopapi.ble.ProShopBleMgr;
-import com.fortmin.proshopapi.nfc.ProShopNFCMgr;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.Tag;
-import android.widget.Toast;
+import android.util.Log;
+
+import com.fortmin.proshopapi.ble.ProShopBleMgr;
+import com.fortmin.proshopapi.nfc.ProShopNFCMgr;
 
 /*
  * Clase principal a la cual se invoca para solicitar el Manager de la Tecnologia
@@ -20,9 +19,17 @@ import android.widget.Toast;
 public class ProShopMgr {
 	
 	private Context context = null;
+	private final String TAG = "PSHAPI";
 	
 	public ProShopMgr(Context context) {
 		this.context = context;
+	}
+	
+	private void log(String logtxt) {
+		String mens = this.getClass().getName()+"->";
+		mens = mens.concat(Thread.currentThread().getStackTrace()[2].getMethodName());
+		if (logtxt != null) mens = mens.concat("->"+logtxt);
+		Log.i(TAG,mens);
 	}
 	
 	/* --------------------------------------------------------------------------------------------
@@ -34,6 +41,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular tiene soporte NFC
 	 */
 	public boolean soportaNFC() {
+		log("");
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();
 		return nfcMgr.soportaNFC(context);
 	}
@@ -42,6 +50,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular tiene soporte NFC Host Card Emulation
 	 */
 	public boolean soportaNFCHce() {
+		log("");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.soportaNFCHce(context);
 	}
@@ -50,6 +59,7 @@ public class ProShopMgr {
 	 * Chequear si el NFC se encuentra habilitado en este momento
 	 */
 	public boolean nfcHabilitado() {
+		log("");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.nfcHabilitado(context);
 	}
@@ -58,6 +68,7 @@ public class ProShopMgr {
 	 * Habilita la escucha del Tag para escritura o grabacion del mismo
 	 */
 	public boolean escucharTagNdefGrabar(Activity activity, Context context) {
+		log("");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.escucharTagNdefEscribir(activity, context);
 	}
@@ -66,6 +77,7 @@ public class ProShopMgr {
 	 * Deshabilita la escucha del Tag para escritura o grabacion del mismo
 	 */
 	public void noEscucharTagNdefGrabar(Activity activity, Context context) {
+		log("");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		nfcMgr.noEscucharTagNdefGrabar(activity, context);
 	}
@@ -74,6 +86,7 @@ public class ProShopMgr {
 	 * Escribe el mensaje NDEF en el Tag detectado
 	 */
 	public String escribirNdefMessageToTag(NdefMessage message, Tag detectedTag) {
+		log("");
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.escribirNdefMessageToTag(message, detectedTag);
 	}
@@ -82,6 +95,7 @@ public class ProShopMgr {
 	 * Obtiene el Tag descubierto a partir del Intent
 	 */
 	public Tag obtenerTagDescubierto(Intent intent) {
+		log("");				
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.obtenerTagDescubierto(intent);
 	}
@@ -91,6 +105,7 @@ public class ProShopMgr {
 	 * Devuelve la excepcion URISyntaxException si la url no esta bien formada
 	 */
 	public NdefMessage prepararMensNdefUrl(String url) throws URISyntaxException {
+		log("");				
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.prepararMensNdefUrl(url);
 	}
@@ -104,6 +119,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular es capaz de comunicarse con dispositivos Bluetooth Low Energy
 	 */
 	public boolean soportaBLE() {
+		log("");				
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.soportaBLE(context);
 	}
@@ -112,6 +128,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular es capaz de comunicarse por Bluetooth
 	 */
 	public boolean soportaBluetooth() {
+		log("");				
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.soportaBluetooth(context);
 	}
@@ -120,6 +137,7 @@ public class ProShopMgr {
 	 * Chequear si el Bluetooth se encuentra habilitado en este momento
 	 */
 	public boolean bluetoothHabilitado() {
+		log("");				
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.bluetoothHabilitado(context);
 	}
