@@ -179,4 +179,5 @@ public class ProShopNFCMgr {
 		return nMessage;
 	}
 
+	
 }
