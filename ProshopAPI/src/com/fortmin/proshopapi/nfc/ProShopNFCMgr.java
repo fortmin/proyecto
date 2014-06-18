@@ -81,7 +81,7 @@ public class ProShopNFCMgr {
 	    	if (mNfcAdapter != null) {
 	    		log("enableForegroundDispatch");
 		    	PendingIntent mPendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-		   	 	IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+		   	 	IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
 		   	 	IntentFilter[] mFilters = new IntentFilter[] { ndef, };
 		   	 	String[][] mTechLists = new String[][] { new String[] { Ndef.class.getName() }, new String[] { NdefFormatable.class.getName() }};
 		   	 	mNfcAdapter.enableForegroundDispatch(activity, mPendingIntent, mFilters, mTechLists);
