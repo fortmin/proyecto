@@ -27,7 +27,6 @@ public class ProShopMgr {
 	
 	private void log(String logtxt) {
 		String mens = this.getClass().getName()+"->";
-		mens = mens.concat(Thread.currentThread().getStackTrace()[2].getMethodName());
 		if (logtxt != null) mens = mens.concat("->"+logtxt);
 		Log.i(TAG,mens);
 	}
@@ -41,7 +40,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular tiene soporte NFC
 	 */
 	public boolean soportaNFC() {
-		log("");
+		log("soportaNFC");
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();
 		return nfcMgr.soportaNFC(context);
 	}
@@ -50,7 +49,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular tiene soporte NFC Host Card Emulation
 	 */
 	public boolean soportaNFCHce() {
-		log("");		
+		log("soportaNFCHce");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.soportaNFCHce(context);
 	}
@@ -59,7 +58,7 @@ public class ProShopMgr {
 	 * Chequear si el NFC se encuentra habilitado en este momento
 	 */
 	public boolean nfcHabilitado() {
-		log("");		
+		log("nfcHabilitado");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.nfcHabilitado(context);
 	}
@@ -68,7 +67,7 @@ public class ProShopMgr {
 	 * Habilita la escucha del Tag para escritura o grabacion del mismo
 	 */
 	public boolean escucharTagNdefGrabar(Activity activity, Context context) {
-		log("");		
+		log("escucharTagNdefGrabar");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.escucharTagNdefEscribir(activity, context);
 	}
@@ -77,7 +76,7 @@ public class ProShopMgr {
 	 * Deshabilita la escucha del Tag para escritura o grabacion del mismo
 	 */
 	public void noEscucharTagNdefGrabar(Activity activity, Context context) {
-		log("");		
+		log("noEscucharTagNdefGrabar");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		nfcMgr.noEscucharTagNdefGrabar(activity, context);
 	}
@@ -86,7 +85,7 @@ public class ProShopMgr {
 	 * Escribe el mensaje NDEF en el Tag detectado
 	 */
 	public String escribirNdefMessageToTag(NdefMessage message, Tag detectedTag) {
-		log("");
+		log("escribirNdefMessageToTag");
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.escribirNdefMessageToTag(message, detectedTag);
 	}
@@ -95,7 +94,7 @@ public class ProShopMgr {
 	 * Obtiene el Tag descubierto a partir del Intent
 	 */
 	public Tag obtenerTagDescubierto(Intent intent) {
-		log("");				
+		log("obtenerTagDescubierto");				
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.obtenerTagDescubierto(intent);
 	}
@@ -105,7 +104,7 @@ public class ProShopMgr {
 	 * Devuelve la excepcion URISyntaxException si la url no esta bien formada
 	 */
 	public NdefMessage prepararMensNdefUrl(String url) throws URISyntaxException {
-		log("");				
+		log("prepararMensNdefUrl");				
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.prepararMensNdefUrl(url);
 	}
@@ -119,7 +118,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular es capaz de comunicarse con dispositivos Bluetooth Low Energy
 	 */
 	public boolean soportaBLE() {
-		log("");				
+		log("soportaBLE");				
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.soportaBLE(context);
 	}
@@ -128,7 +127,7 @@ public class ProShopMgr {
 	 * Averiguo si el celular es capaz de comunicarse por Bluetooth
 	 */
 	public boolean soportaBluetooth() {
-		log("");				
+		log("soportaBluetooth");				
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.soportaBluetooth(context);
 	}
@@ -137,7 +136,7 @@ public class ProShopMgr {
 	 * Chequear si el Bluetooth se encuentra habilitado en este momento
 	 */
 	public boolean bluetoothHabilitado() {
-		log("");				
+		log("bluetoothHabilitado");				
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.bluetoothHabilitado(context);
 	}

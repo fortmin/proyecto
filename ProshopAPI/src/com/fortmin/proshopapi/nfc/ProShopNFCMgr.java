@@ -26,7 +26,6 @@ public class ProShopNFCMgr {
 	
 	private void log(String logtxt) {
 		String mens = this.getClass().getName()+"->";
-		mens = mens.concat(Thread.currentThread().getStackTrace()[2].getMethodName());
 		if (logtxt != null) mens = mens.concat("->"+logtxt);
 		Log.i(TAG,mens);
 	}
@@ -35,7 +34,7 @@ public class ProShopNFCMgr {
 	 * Averiguo si el celular tiene soporte NFC
 	 */
 	public boolean soportaNFC(Context context) {
-		log("");
+		log("soportaNFC");
 		PackageManager pckMgr = context.getPackageManager();
 		return pckMgr.hasSystemFeature(PackageManager.FEATURE_NFC);
 	}
@@ -44,7 +43,7 @@ public class ProShopNFCMgr {
 	 * Averiguo si el celular tiene soporte NFC Host Card Emulation
 	 */
 	public boolean soportaNFCHce(Context context) {
-		log("");		
+		log("soportaNFCHce");		
 		boolean soporta = false;
 		PackageManager pckMgr = context.getPackageManager();
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {	
@@ -57,7 +56,7 @@ public class ProShopNFCMgr {
 	 * Chequear si el NFC se encuentra habilitado en este momento
 	 */
 	public boolean nfcHabilitado(Context context) {
-		log("");		
+		log("nfcHabilitado");		
 		boolean habilitado = false;
 		if (soportaNFC(context)) {
 			NfcManager nfcMgr = (NfcManager) context.getSystemService(Context.NFC_SERVICE);
@@ -75,7 +74,7 @@ public class ProShopNFCMgr {
 	 * Habilita la escucha del Tag para escritura o grabacion del mismo
 	 */
 	public boolean escucharTagNdefEscribir(Activity activity, Context context) {
-		log("");
+		log("escucharTagNdefEscribir");
 		boolean result = false;
 		if (nfcHabilitado(context)) {
 	    	NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(context); 
@@ -96,7 +95,7 @@ public class ProShopNFCMgr {
 	 * Deshabilita la escucha del Tag para escritura o grabacion del mismo
 	 */
 	public void noEscucharTagNdefGrabar(Activity activity, Context context) {
-		log("");
+		log("noEscucharTagNdefGrabar");
 		if (nfcHabilitado(context)) {
 	    	NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(context); 
 	    	if (mNfcAdapter != null) {
@@ -110,7 +109,7 @@ public class ProShopNFCMgr {
 	 * Escribe el mensaje NDEF en el Tag detectado
 	 */
     public String escribirNdefMessageToTag(NdefMessage message, Tag detectedTag) {
-    	log("");
+    	log("escribirNdefMessageToTag");
     	String respuesta = "OK";
         int size = message.toByteArray().length;
         try {
