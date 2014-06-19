@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.Tag;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fortmin.proshopapi.ble.ProShopBleMgr;
 import com.fortmin.proshopapi.nfc.ProShopNFCMgr;
@@ -140,6 +141,10 @@ public class ProShopMgr {
 		ProShopBleMgr bleMgr = new ProShopBleMgr();
 		return bleMgr.bluetoothHabilitado(context);
 	}
+	
+	 public void onNewIntent(Intent intent) {
+		System.out.print("recibi tag");
+	 }
 
 	/*
 	 * Tabla de referencia entre API Level y Version Codes:
