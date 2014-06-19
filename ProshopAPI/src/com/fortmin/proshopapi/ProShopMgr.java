@@ -66,10 +66,10 @@ public class ProShopMgr {
 	/*
 	 * Habilita la escucha del Tag para escritura o grabacion del mismo
 	 */
-	public boolean escucharTagNdefGrabar(Activity activity, Context context) {
+	public boolean escucharTagNdefGrabar(Activity activity, Context context, Object clase) {
 		log("escucharTagNdefGrabar");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
-		return nfcMgr.escucharTagNdefEscribir(activity, context);
+		return nfcMgr.escucharTagNdefEscribir(activity, context, clase);
 	}
 	
 	/*
