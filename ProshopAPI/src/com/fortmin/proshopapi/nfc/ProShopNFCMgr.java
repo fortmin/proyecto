@@ -73,11 +73,11 @@ public class ProShopNFCMgr {
 	/*
 	 * Habilita la escucha del Tag para escritura o grabacion del mismo
 	 */
-	public boolean escucharTagNdefEscribir(Activity activity, Context context) {
+	public boolean escucharTagNdefEscribir(Activity activity, Context context,NfcAdapter  mNfcAdapter  ) {
 		log("escucharTagNdefEscribir");
 		boolean result = false;
 		if (nfcHabilitado(activity)) {
-	    	NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(context); 
+	    	 mNfcAdapter = NfcAdapter.getDefaultAdapter(context); 
 	    	if (mNfcAdapter != null) {
 	    		log("enableForegroundDispatch");
 		    	PendingIntent mPendingIntent = PendingIntent.getActivity(activity, 0, new Intent(context, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);

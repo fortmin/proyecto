@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.NdefMessage;
+import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.util.Log;
 import android.widget.Toast;
@@ -67,10 +68,10 @@ public class ProShopMgr {
 	/*
 	 * Habilita la escucha del Tag para escritura o grabacion del mismo
 	 */
-	public boolean escucharTagNdefGrabar(Activity activity, Context context) {
+	public boolean escucharTagNdefGrabar(Activity activity, Context context,NfcAdapter adapter) {
 		log("escucharTagNdefGrabar");		
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
-		return nfcMgr.escucharTagNdefEscribir(activity, context);
+		return nfcMgr.escucharTagNdefEscribir(activity, context,adapter);
 	}
 	
 	/*
