@@ -76,11 +76,11 @@ public class ProShopNFCMgr {
 	public boolean escucharTagNdefEscribir(Activity activity, Context context) {
 		log("escucharTagNdefEscribir");
 		boolean result = false;
-		if (nfcHabilitado(context)) {
+		if (nfcHabilitado(activity)) {
 	    	NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(context); 
 	    	if (mNfcAdapter != null) {
 	    		log("enableForegroundDispatch");
-		    	PendingIntent mPendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+		    	PendingIntent mPendingIntent = PendingIntent.getActivity(activity, 0, new Intent(context, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 		   	 	IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
 		   	 	IntentFilter[] mFilters = new IntentFilter[] { ndef, };
 		   	 	String[][] mTechLists = new String[][] { new String[] { Ndef.class.getName() }, new String[] { NdefFormatable.class.getName() }};
