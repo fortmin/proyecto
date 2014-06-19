@@ -142,9 +142,7 @@ public class ProShopMgr {
 		return bleMgr.bluetoothHabilitado(context);
 	}
 	
-	 public void onNewIntent(Intent intent) {
-		System.out.print("recibi tag");
-	 }
+	
 
 	/*
 	 * Tabla de referencia entre API Level y Version Codes:
