@@ -3,6 +3,7 @@ package com.fortmin.proshopapi.nfc;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -174,6 +175,10 @@ public class ProShopNFCMgr {
 		log("");
 		NdefMessage nMessage = null;
 		String url = (new URI(textoUrl)).normalize().toString();
+		byte[] uriField = url.getBytes(Charset.forName("US-ASCII"));
+		byte[] payload = new byte[uriField.length+1];
+		payload[0] = UriNdefPrefixes.HTTP;
+		System.arraycopy(uriField, 0, payload, 1, uriField.length);
 		NdefRecord extRecord1 = NdefRecord.createUri(url);
 		nMessage = new NdefMessage(new NdefRecord[] { extRecord1 });
 		return nMessage;
