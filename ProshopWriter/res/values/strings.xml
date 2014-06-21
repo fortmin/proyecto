@@ -4,5 +4,8 @@
     <string name="app_name">ProshopWriter</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="botonEscritura">GrabarTag</string>
+    <string name="url">Escriba la Url a grabar </string>
+    <string name="botonSalir">Salir</string>
 
 </resources>

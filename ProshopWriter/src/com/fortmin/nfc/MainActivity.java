@@ -1,26 +1,57 @@
 package com.fortmin.nfc;
 
+import java.net.URISyntaxException;
+
+import com.fortmin.proshopapi.ProShopMgr;
 import android.app.Activity;
-import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
+import android.nfc.NdefMessage;
+import android.nfc.Tag;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
+	
+// DECLARACION DE VARIABLES	
+	protected String textoUrl;
+	ProShopMgr proshopmgr;
+	private Context context;  
+	private Tag tag=null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+		
+		final EditText editUrl = (EditText) findViewById(R.id.Texturl);
+		Button writeItemButton = (Button) findViewById(R.id.botonWrite);
+	    writeItemButton.setOnClickListener(new View.OnClickListener() 
+	        {
+				public void onClick(View view) {
+	        		textoUrl = editUrl.getText().toString();
+	        		Mensaje(view, "Toque el Tag NFC Tag para grabar \n");
+	          	}
+	        });
+	        context=getApplicationContext();  
+	        Button salirButton = (Button) this.findViewById(R.id.botonSalir);
+	        salirButton.setOnClickListener(new View.OnClickListener() 
+	        {
+				public void onClick(View view) {
+					finish();
+				}
+	        });
+	        proshopmgr = new ProShopMgr(context);
+	       
+	        
 		}
-	}
+		
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,21 +73,39 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}
+	public void Mensaje(View v,String mensaje) {
+        Toast toast = Toast.makeText(this, mensaje, Toast.LENGTH_LONG);
+        toast.show();        
+    }
+	public void Mensaje(Activity act,String mensaje) {
+        Toast toast = Toast.makeText(this, mensaje, Toast.LENGTH_LONG);
+        toast.show();        
+    }
+	
+	 @Override
+	    public void onResume() {
+	        super.onResume();
+	        proshopmgr.escucharTagNdefGrabar(this, context, getClass());
+	    }	
+	 @Override
+	   public void onNewIntent(Intent intent) {
+	     super.onNewIntent(intent);
+	     tag = proshopmgr.obtenerTagDescubierto(intent);
+	     if (tag != null) {
+		  try {
+		    NdefMessage newMessage = proshopmgr.prepararMensNdefUrl(textoUrl);
+		    proshopmgr.escribirNdefMessageToTag(newMessage, tag);
+			} catch (URISyntaxException e) {
+				Mensaje(this, "URL con formato incorrecto");				
+				}
+	        }
+	    	
+	 
+	    }
+	  @Override
+	    public void onPause() {
+	      super.onPause();
+	      proshopmgr.noEscucharTagNdefGrabar(this, context);
+	    }
 
 }
