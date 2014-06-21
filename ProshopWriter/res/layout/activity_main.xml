@@ -23,21 +23,46 @@
     </EditText>
 
     <Button
-        android:id="@+id/botonWrite"
+        android:id="@+id/botonWriteUrl"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Texturl"
         android:textColor="#ffffff" 
         android:background="#ff0000"
         android:textSize="32sp"
-        android:text="@string/botonEscritura"
+        android:text="@string/botonEscrituraUrl"
         android:layout_marginTop="10dp"
         />
+    
+    <Button
+        android:id="@+id/botonWriteTel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/botonWriteUrl"
+        android:textColor="#ffffff" 
+        android:background="#ff0000"
+        android:textSize="32sp"
+        android:text="@string/botonEscrituraTel"
+        android:layout_marginTop="10dp"
+        />
+    
+     <Button
+        android:id="@+id/botonWriteMail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/botonWriteTel"
+        android:textColor="#ffffff" 
+        android:background="#ff0000"
+        android:textSize="32sp"
+        android:text="@string/botonEscrituraMail"
+        android:layout_marginTop="10dp"
+        />
+    
      <Button
         android:id="@+id/botonSalir"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/botonWrite"
+        android:layout_below="@+id/botonWriteMail"
         android:textColor="#ffffff" 
         android:background="#ff0000"
         android:textSize="32sp"

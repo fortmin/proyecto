@@ -2,10 +2,11 @@
 <resources>
 
     <string name="app_name">ProshopWriter</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="botonEscritura">GrabarTag</string>
+    <string name="botonEscrituraUrl">Grabar Url</string>
     <string name="url">Escriba la Url a grabar </string>
     <string name="botonSalir">Salir</string>
+    <string name="botonEscrituraMail">Grabar Mail</string>
+    <string name="botonEscrituraTel">Grabar Telefono</string>
 
 </resources>
