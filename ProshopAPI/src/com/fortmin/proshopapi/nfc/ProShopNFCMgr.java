@@ -183,5 +183,39 @@ public class ProShopNFCMgr {
 		nMessage = new NdefMessage(new NdefRecord[] { extRecord1 });
 		return nMessage;
 	}
+	
+	/* 
+	 * Preparar mensaje NDEF para email (mailto:)
+	 */
+	public NdefMessage prepararMensNdefMailto(String mail, String subject, String body) {
+		log("");
+		NdefMessage nMessage = null;
+		String url = mail;
+		if (subject != null) mail = mail.concat("?subject="+subject);
+		if (body != null) mail = mail.concat("?body="+body);
+		byte[] uriField = url.getBytes(Charset.forName("US-ASCII"));
+		byte[] payload = new byte[uriField.length+1];
+		payload[0] = UriNdefPrefixes.MAILTO;
+		System.arraycopy(uriField, 0, payload, 1, uriField.length);
+        NdefRecord URIRecord  = new NdefRecord(NdefRecord.TNF_WELL_KNOWN, NdefRecord.RTD_URI, new byte[0], payload);
+        nMessage= new NdefMessage(new NdefRecord[] { URIRecord });
+		return nMessage;
+	}
 
+	/* 
+	 * Preparar mensaje NDEF para telefono (tel:)
+	 */
+	public NdefMessage prepararMensNdefTel(String numtel) {
+		log("");
+		NdefMessage nMessage = null;
+		String url = numtel;
+		byte[] uriField = url.getBytes(Charset.forName("US-ASCII"));
+		byte[] payload = new byte[uriField.length+1];
+		payload[0] = UriNdefPrefixes.TEL;
+		System.arraycopy(uriField, 0, payload, 1, uriField.length);
+        NdefRecord URIRecord  = new NdefRecord(NdefRecord.TNF_WELL_KNOWN, NdefRecord.RTD_URI, new byte[0], payload);
+        nMessage= new NdefMessage(new NdefRecord[] { URIRecord });
+		return nMessage;
+	}
+	
 }

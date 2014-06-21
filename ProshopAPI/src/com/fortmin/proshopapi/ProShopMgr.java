@@ -109,6 +109,24 @@ public class ProShopMgr {
 		return nfcMgr.prepararMensNdefUrl(url);
 	}
 	
+	/* 
+	 * Preparar mensaje NDEF para email (mailto:)
+	 */
+	public NdefMessage prepararMensNdefMailto(String mail, String subject, String body) {
+		log("prepararMensNdefMailto");				
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.prepararMensNdefMailto(mail, subject, body);
+	}
+	
+	/* 
+	 * Preparar mensaje NDEF para telefono (tel:)
+	 */
+	public NdefMessage prepararMensNdefTel(String numtel) {
+		log("prepararMensNdefTel");				
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.prepararMensNdefTel(numtel);
+	}
+	
 	/* --------------------------------------------------------------------------------------------
 	 * ***************** FUNCIONES BLUETOOTH Y BLUETOOTH LOW ENERGY *******************************
 	 * -------------------------------------------------------------------------------------------- 
