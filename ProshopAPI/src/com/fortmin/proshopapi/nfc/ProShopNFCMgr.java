@@ -218,4 +218,19 @@ public class ProShopNFCMgr {
 		return nMessage;
 	}
 	
+	/* 
+	 * Preparar mensaje NDEF para SMS (tel:)
+	 */
+	public NdefMessage prepararMensNdefSMS(String numtel, String body) {
+		log("");
+		NdefMessage nMessage = null;
+		String url = numtel;
+		if (body != null) url = url.concat("?body="+body);
+        String externalType = "nfclab.com:smsService";
+        NdefRecord URIRecord  = new NdefRecord(NdefRecord.TNF_EXTERNAL_TYPE, externalType.getBytes(), new byte[0], url.getBytes());
+        nMessage= new NdefMessage(new NdefRecord[] { URIRecord });
+		return nMessage;
+	}
+	
+	
 }

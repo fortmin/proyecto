@@ -127,6 +127,15 @@ public class ProShopMgr {
 		return nfcMgr.prepararMensNdefTel(numtel);
 	}
 	
+	/* 
+	 * Preparar mensaje NDEF para SMS (tel:)
+	 */
+	public NdefMessage prepararMensNdefSMS(String numtel, String body) {
+		log("prepararMensNdefTel");				
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.prepararMensNdefSMS(numtel,body);
+	}	
+	
 	/* --------------------------------------------------------------------------------------------
 	 * ***************** FUNCIONES BLUETOOTH Y BLUETOOTH LOW ENERGY *******************************
 	 * -------------------------------------------------------------------------------------------- 
