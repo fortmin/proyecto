@@ -3,9 +3,11 @@ package com.fortmin.nfc;
 import java.net.URISyntaxException;
 
 import com.fortmin.proshopapi.ProShopMgr;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.nfc.NdefMessage;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -28,25 +30,37 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		final EditText editUrl = (EditText) findViewById(R.id.Texturl);
+			
 		Button writeItemButton = (Button) findViewById(R.id.botonWrite);
+		//cambio la fuente del botón
+        Typeface fuente=Typeface.createFromAsset(getAssets(),"gloriahallelujah.ttf");
+        // agrego la fuente al botón
+        writeItemButton.setTypeface(fuente);
+        //Le pongo degrade plateado al botón
+        writeItemButton.setBackgroundResource(R.drawable.degradado);
+		
 	    writeItemButton.setOnClickListener(new View.OnClickListener() 
+	    
 	        {
 				public void onClick(View view) {
-	        		textoUrl = editUrl.getText().toString();
-	        		Mensaje(view, "Toque el Tag NFC Tag para grabar \n");
+	        		//textoUrl = editUrl.getText().toString();
+	        		//Mensaje(view, "Toque el Tag NFC Tag para grabar \n");
+					mostrarOpciones();
 	          	}
 	        });
-	        context=getApplicationContext();  
+	       // context=getApplicationContext();  
 	        Button salirButton = (Button) this.findViewById(R.id.botonSalir);
+	       // agrego la fuente al botón
+	        salirButton.setTypeface(fuente);
+	        //Le pongo degrade plateado al botón
+	        salirButton.setBackgroundResource(R.drawable.degradado);
 	        salirButton.setOnClickListener(new View.OnClickListener() 
 	        {
 				public void onClick(View view) {
 					finish();
 				}
 	        });
-	        proshopmgr = new ProShopMgr(context);
+	       // proshopmgr = new ProShopMgr(context);
 	       
 	        
 		}
@@ -85,7 +99,7 @@ public class MainActivity extends Activity {
 	 @Override
 	    public void onResume() {
 	        super.onResume();
-	        proshopmgr.escucharTagNdefGrabar(this, context, getClass());
+	    //    proshopmgr.escucharTagNdefGrabar(this, context, getClass());
 	    }	
 	 @Override
 	   public void onNewIntent(Intent intent) {
@@ -105,7 +119,10 @@ public class MainActivity extends Activity {
 	  @Override
 	    public void onPause() {
 	      super.onPause();
-	      proshopmgr.noEscucharTagNdefGrabar(this, context);
+	   //   proshopmgr.noEscucharTagNdefGrabar(this, context);
 	    }
-
+        private void mostrarOpciones(){
+        	Intent opciones=new Intent(this,Opciones.class);
+        	startActivity(opciones);
+        }
 }

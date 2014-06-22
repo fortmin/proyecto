@@ -7,5 +7,10 @@
     <string name="botonEscritura">GrabarTag</string>
     <string name="url">Escriba la Url a grabar </string>
     <string name="botonSalir">Salir</string>
+    <string name="title_activity_opciones">Opciones</string>
+    <string name="grabarEmail">Grabar-Email</string>
+    <string name="grabarUrl">Grabar-Url</string>
+    <string name="grabarTelefono">Grabar-Telefono</string>
+    <string name="grabarSms">Grabar-Sms</string>
 
 </resources>

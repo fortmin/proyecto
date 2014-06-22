@@ -1,49 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pantallaWriter"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="#000000"
-    tools:context="com.fortmin.nfc.MainActivity"
-    tools:ignore="MergeRootFrame" >
-
-    <EditText
-        android:id="@+id/Texturl"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="#ffffff"
-        android:hint="@string/url"
-        android:layout_marginTop="10dp"
-        
-        >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/botonWrite"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Texturl"
-        android:textColor="#ffffff" 
-        android:background="#ff0000"
-        android:textSize="32sp"
-        android:text="@string/botonEscritura"
-        android:layout_marginTop="10dp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:screenOrientation="portrait"
+  >
+    
+    <ImageView
+         android:id="@+id/imagen_logo"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_vertical"
+          android:scaleType="fitCenter"
+         android:src="@drawable/shooping" />
+    
+    <RelativeLayout
+            
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+    	<Button
+       	 android:id="@+id/botonWrite"
+       	 android:layout_width="fill_parent"
+       	 android:layout_height="wrap_content"
+       	 android:textSize="28sp"
+       	 android:text="@string/botonEscritura"
+       	 android:layout_marginTop="10dp"
+        	/>
+    	 <Button
+       	 android:id="@+id/botonSalir"
+      	 android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/botonWrite"
+         android:textSize="28sp"
+         android:text="@string/botonSalir"
+         android:layout_marginTop="10dp"
         />
-     <Button
-        android:id="@+id/botonSalir"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/botonWrite"
-        android:textColor="#ffffff" 
-        android:background="#ff0000"
-        android:textSize="32sp"
-        android:text="@string/botonSalir"
-        android:layout_marginTop="10dp"
-        />
+     </RelativeLayout>
 
-</RelativeLayout>
+    
+
+</FrameLayout>
 
