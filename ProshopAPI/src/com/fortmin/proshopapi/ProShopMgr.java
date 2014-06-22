@@ -128,7 +128,7 @@ public class ProShopMgr {
 	}
 	
 	/* 
-	 * Preparar mensaje NDEF para SMS (tel:)
+	 * Preparar mensaje NDEF para SMS (nfclab.com:smsService:)
 	 */
 	public NdefMessage prepararMensNdefSMS(String numtel, String body) {
 		log("prepararMensNdefTel");				
