@@ -131,10 +131,20 @@ public class ProShopMgr {
 	 * Preparar mensaje NDEF para SMS (nfclab.com:smsService:)
 	 */
 	public NdefMessage prepararMensNdefSMS(String numtel, String body) {
-		log("prepararMensNdefTel");				
+		log("prepararMensNdefSMS");				
 		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
 		return nfcMgr.prepararMensNdefSMS(numtel,body);
 	}	
+	
+	/*
+	 * Preparar mensaje NDEF para tipo EXTERNAL_TYPE
+	 * Ejemplo de tipo: "nfclab.com:smsService"
+	 */
+	public NdefMessage prepararMensNdefExternalType(String tipo, String datos) {
+		log("prepararMensNdefExternalType");				
+		ProShopNFCMgr nfcMgr = new ProShopNFCMgr();		
+		return nfcMgr.prepararMensNdefExternalType(tipo,datos);
+	}
 	
 	/* --------------------------------------------------------------------------------------------
 	 * ***************** FUNCIONES BLUETOOTH Y BLUETOOTH LOW ENERGY *******************************

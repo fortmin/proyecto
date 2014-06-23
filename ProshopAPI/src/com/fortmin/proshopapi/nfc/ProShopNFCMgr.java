@@ -219,18 +219,32 @@ public class ProShopNFCMgr {
 	}
 	
 	/* 
-	 * Preparar mensaje NDEF para SMS (nfclab.com:smsService:)
+	 * Preparar mensaje NDEF para SMS (sms:)
 	 */
 	public NdefMessage prepararMensNdefSMS(String numtel, String body) {
 		log("");
 		NdefMessage nMessage = null;
-		String url = numtel;
+		String url = "sms:"+numtel;
 		if (body != null) url = url.concat("?body="+body);
-        String externalType = "nfclab.com:smsService";
-        NdefRecord URIRecord  = new NdefRecord(NdefRecord.TNF_EXTERNAL_TYPE, externalType.getBytes(), new byte[0], url.getBytes());
-        nMessage= new NdefMessage(new NdefRecord[] { URIRecord });
+		byte[] uriField = url.getBytes(Charset.forName("US-ASCII"));
+		byte[] payload = new byte[uriField.length+1];
+		payload[0] = UriNdefPrefixes.HTTP;
+		System.arraycopy(uriField, 0, payload, 1, uriField.length);
+		NdefRecord extRecord1 = NdefRecord.createUri(url);
+		nMessage = new NdefMessage(new NdefRecord[] { extRecord1 });
 		return nMessage;
 	}
 	
+	/*
+	 * Preparar mensaje NDEF para tipo EXTERNAL_TYPE
+	 * Ejemplo de tipo: "nfclab.com:smsService"
+	 */
+	public NdefMessage prepararMensNdefExternalType(String tipo, String datos) {
+		log("");
+		NdefMessage nMessage = null;
+		NdefRecord registro = new NdefRecord(NdefRecord.TNF_EXTERNAL_TYPE, tipo.getBytes(), new byte[0], datos.getBytes());
+		nMessage = new NdefMessage(new NdefRecord[] { registro });
+		return nMessage;
+	}
 	
 }
