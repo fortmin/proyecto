@@ -33,6 +33,33 @@
             android:name="com.fortmin.nfc.Opciones"
             android:label="@string/title_activity_opciones" >
         </activity>
+        <activity
+            android:name="com.fortmin.nfc.GrabarUrl"
+            android:label="@string/title_activity_grabar_url" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fortmin.nfc.GrabarEmail"
+            android:label="@string/title_activity_grabar_email" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fortmin.nfc.GrabarTelefono"
+            android:label="@string/title_activity_grabar_telefono" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

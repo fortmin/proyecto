@@ -3,6 +3,7 @@ package com.fortmin.nfc;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,6 +40,32 @@ public class Opciones extends Activity {
         btn_grabar_url.setBackgroundResource(R.drawable.degradado);
         btn_grabar_telefono.setBackgroundResource(R.drawable.degradado);
         btn_grabar_sms.setBackgroundResource(R.drawable.degradado);
+        btn_grabar_url.setOnClickListener(new View.OnClickListener() 
+	    {
+			public void onClick(View view) {
+        		//textoUrl = editUrl.getText().toString();
+        		//Mensaje(view, "Toque el Tag NFC Tag para grabar \n");
+				grabarUrl();
+          	}
+        });
+        btn_grabar_email.setOnClickListener(new View.OnClickListener() 
+	    {
+			public void onClick(View view) {
+        		//textoUrl = editUrl.getText().toString();
+        		//Mensaje(view, "Toque el Tag NFC Tag para grabar \n");
+				grabarEmail();
+          	}
+        });
+        btn_grabar_telefono.setOnClickListener(new View.OnClickListener() 
+	    {
+			public void onClick(View view) {
+        		//textoUrl = editUrl.getText().toString();
+        		//Mensaje(view, "Toque el Tag NFC Tag para grabar \n");
+				grabarTelefono();
+          	}
+        });
+        
+        
 	}
 
 	@Override
@@ -61,6 +88,17 @@ public class Opciones extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	
+	private void grabarUrl(){
+		Intent grabar_url=new Intent(this,GrabarUrl.class);
+		startActivity(grabar_url);
+	}
+	private void grabarEmail(){
+		Intent grabar_email=new Intent(this,GrabarEmail.class);
+		startActivity(grabar_email);
+	}
+	private void grabarTelefono(){
+		Intent grabar_telefono=new Intent(this,GrabarTelefono.class);
+		startActivity(grabar_telefono);
+	}
 
 }

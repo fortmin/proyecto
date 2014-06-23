@@ -12,5 +12,8 @@
     <string name="grabarUrl">Grabar-Url</string>
     <string name="grabarTelefono">Grabar-Telefono</string>
     <string name="grabarSms">Grabar-Sms</string>
+    <string name="title_activity_grabar_url">GrabarUrl</string>
+    <string name="title_activity_grabar_email">GrabarEmail</string>
+    <string name="title_activity_grabar_telefono">GrabarTelefono</string>
 
 </resources>
